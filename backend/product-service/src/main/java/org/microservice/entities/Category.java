@@ -9,13 +9,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import lombok.ToString;
 
 @Document
-@Data @ToString @Getter @Setter @NoArgsConstructor @AllArgsConstructor 
+@Data @ToString  @NoArgsConstructor @AllArgsConstructor 
 public class Category {
     @Id
 	private String id;

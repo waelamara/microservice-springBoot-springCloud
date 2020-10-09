@@ -8,7 +8,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -32,9 +31,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// Eliminer les sessions
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		http.authorizeRequests().antMatchers("/categories/**").hasAuthority("ADMIN");
-		http.authorizeRequests().antMatchers("/products/**").hasAuthority("USER");
-		http.authorizeRequests().anyRequest().authenticated();
-		http.addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
+		http.authorizeRequests().antMatchers("/products/**").permitAll();
+		//http.authorizeRequests().anyRequest().authenticated();
+		//http.addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
 		// super.configure(http);
 	}
 
