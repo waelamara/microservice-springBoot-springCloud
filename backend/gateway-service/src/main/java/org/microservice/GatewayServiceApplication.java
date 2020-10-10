@@ -23,7 +23,7 @@ public class GatewayServiceApplication {
 		return new DiscoveryClientRouteDefinitionLocator(rdc, dlp);
 	}
 
-	// @Bean
+	//@Bean
 	RouteLocator StaticRoutes(RouteLocatorBuilder builder) {
 		return builder.routes().route(r -> r.path("/products/**").uri("lb://PRODUCT-SERVICE/").id("route_1")).build();
 	}
