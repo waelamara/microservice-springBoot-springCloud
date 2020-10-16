@@ -12,7 +12,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,9 +27,9 @@ public class Bill {
 	private Long id;
 	@Temporal(TemporalType.DATE)
 	private Date billingDate;
+	@JsonProperty(access = Access.WRITE_ONLY)
 	private Long userId;
 	@Transient private User user;
-	@JsonIgnore
 	@OneToMany(mappedBy="bill")
 	private Collection<ProductItem> productItems ;
 }

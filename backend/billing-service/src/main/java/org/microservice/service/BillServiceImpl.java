@@ -14,12 +14,15 @@ public class BillServiceImpl implements IBillService {
 	BillRepository billRepository;
 	@Autowired
 	IUserService iUserService;
+	@Autowired
+	IProductService iProductService;
 	
 	@Override
 	public Collection<Bill> findAll() {
 		 Collection<Bill> bill=billRepository.findAll();
 		 for (Bill b : bill) {
 			 b.setUser(iUserService.findUserById(b.getUserId()));
+			 b.getProductItems().forEach(p->p.setProduct(iProductService.findProductById(p.getProductId())));
 		}
 		 return bill;
 	}
