@@ -16,23 +16,23 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ProductItemController {
 
-	@Autowired
-	IProductItemService iProductItemService;
-	@Autowired
-	IBillService iBillService;
-	
-	 @GetMapping("/productItems")
-	 public Collection<ProductItem> findAll(){
-		return iProductItemService.findAll();
-	 }
-	 
-	 @PostMapping("/addproductItem")
-	 public ProductItem AddProductItem(@RequestBody ProductItem productItem){
-		return iProductItemService.save(productItem);
-	 }
-	 
-	 @DeleteMapping("/deleteProductItem/{id}")
-	 public void deleteBill(@PathVariable(name="id") Long id){
-		 iProductItemService.removeByid(id);
-	 }
+    @Autowired
+    IProductItemService iProductItemService;
+    @Autowired
+    IBillService iBillService;
+
+    @GetMapping("/productItems")
+    public Collection<ProductItem> findAll() {
+        return iProductItemService.findAll();
+    }
+
+    @PostMapping("/addproductItem")
+    public ProductItem AddProductItem(@RequestBody ProductItem productItem) {
+        return iProductItemService.save(productItem);
+    }
+
+    @DeleteMapping("/deleteProductItem/{id}")
+    public void deleteBill(@PathVariable(name = "id") Long id) {
+        iProductItemService.removeByid(id);
+    }
 }

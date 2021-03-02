@@ -20,16 +20,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Data @AllArgsConstructor @NoArgsConstructor
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class Bill {
 
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
-	@Temporal(TemporalType.DATE)
-	private Date billingDate;
-	@JsonProperty(access = Access.WRITE_ONLY)
-	private Long userId;
-	@Transient private User user;
-	@OneToMany(mappedBy="bill")
-	private Collection<ProductItem> productItems ;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Temporal(TemporalType.DATE)
+    private Date billingDate;
+    @JsonProperty(access = Access.WRITE_ONLY)
+    private Long userId;
+    @Transient
+    private User user;
+    @OneToMany(mappedBy = "bill")
+    private Collection<ProductItem> productItems;
 }

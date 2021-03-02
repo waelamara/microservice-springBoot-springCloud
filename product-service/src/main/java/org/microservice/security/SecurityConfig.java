@@ -13,28 +13,28 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-	@Bean
-	BCryptPasswordEncoder getBCPE() {
-		return new BCryptPasswordEncoder();
-	}
+    @Bean
+    BCryptPasswordEncoder getBCPE() {
+        return new BCryptPasswordEncoder();
+    }
 
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		BCryptPasswordEncoder bcpe = getBCPE();
-		auth.inMemoryAuthentication().withUser("admin").password(bcpe.encode("1234")).roles("ADMIN", "USER");
-	}
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        BCryptPasswordEncoder bcpe = getBCPE();
+        auth.inMemoryAuthentication().withUser("admin").password(bcpe.encode("1234")).roles("ADMIN", "USER");
+    }
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
 
-		http.csrf().disable();
-		// Eliminer les sessions
-		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-		http.authorizeRequests().antMatchers("/categories/**").hasAuthority("ADMIN");
-		http.authorizeRequests().antMatchers("/products/**").permitAll();
-		//http.authorizeRequests().anyRequest().authenticated();
-		//http.addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
-		// super.configure(http);
-	}
+        http.csrf().disable();
+        // Eliminer les sessions
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.authorizeRequests().antMatchers("/categories/**").hasAuthority("ADMIN");
+        http.authorizeRequests().antMatchers("/products/**").permitAll();
+        //http.authorizeRequests().anyRequest().authenticated();
+        //http.addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
+        // super.configure(http);
+    }
 
 }

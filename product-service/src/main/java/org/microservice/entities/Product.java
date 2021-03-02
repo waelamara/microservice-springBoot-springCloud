@@ -10,14 +10,17 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Document
-@Data @ToString  @NoArgsConstructor @AllArgsConstructor 
+@Data
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product {
-	@Id
-	private String id;
-	private String name;
-	private float price;
-	@DBRef
-	private Category category;
-	
-	
+    @Id
+    private String id;
+    private String name;
+    private float price;
+    @DBRef
+    private Category category;
+
+
 }

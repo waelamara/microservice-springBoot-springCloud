@@ -15,16 +15,20 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Data @AllArgsConstructor @NoArgsConstructor
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class ProductItem {
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
-	@JsonProperty(access = Access.WRITE_ONLY)
-	private String productId;
-	@Transient private Product product;
-	private double price;
-	private int quantity;
-	@ManyToOne
-	@JsonProperty(access = Access.WRITE_ONLY)
-	private Bill bill;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @JsonProperty(access = Access.WRITE_ONLY)
+    private String productId;
+    @Transient
+    private Product product;
+    private double price;
+    private int quantity;
+    @ManyToOne
+    @JsonProperty(access = Access.WRITE_ONLY)
+    private Bill bill;
 }

@@ -13,11 +13,14 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Document
-@Data @ToString  @NoArgsConstructor @AllArgsConstructor 
+@Data
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
 public class Category {
     @Id
-	private String id;
-	private String name;
-	@DBRef
-	private Collection<Product> products =new ArrayList<>();
+    private String id;
+    private String name;
+    @DBRef
+    private Collection<Product> products = new ArrayList<>();
 }

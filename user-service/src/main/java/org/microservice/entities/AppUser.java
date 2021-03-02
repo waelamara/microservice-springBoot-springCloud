@@ -19,19 +19,22 @@ import lombok.NoArgsConstructor;
 
 
 @Entity
-@Data  @AllArgsConstructor @NoArgsConstructor
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class AppUser implements Serializable {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
-	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	private String username;
-	private String email;
-	@JsonProperty(access= JsonProperty.Access.WRITE_ONLY)
-	private String password;
-	@ManyToMany(fetch = FetchType.EAGER)
-	private Collection<AppRole> roles=new ArrayList<>();
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String username;
+    private String email;
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private String password;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Collection<AppRole> roles = new ArrayList<>();
 
 }

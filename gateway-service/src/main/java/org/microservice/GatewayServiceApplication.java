@@ -14,18 +14,18 @@ import org.springframework.context.annotation.Bean;
 @EnableDiscoveryClient
 public class GatewayServiceApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(GatewayServiceApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(GatewayServiceApplication.class, args);
+    }
 
-	@Bean
-	DiscoveryClientRouteDefinitionLocator DynamicRoutes(ReactiveDiscoveryClient rdc,DiscoveryLocatorProperties dlp) {
-		return new DiscoveryClientRouteDefinitionLocator(rdc, dlp);
-	}
+    @Bean
+    DiscoveryClientRouteDefinitionLocator DynamicRoutes(ReactiveDiscoveryClient rdc, DiscoveryLocatorProperties dlp) {
+        return new DiscoveryClientRouteDefinitionLocator(rdc, dlp);
+    }
 
-	//@Bean
-	RouteLocator StaticRoutes(RouteLocatorBuilder builder) {
-		return builder.routes().route(r -> r.path("/products/**").uri("lb://PRODUCT-SERVICE/").id("route_1")).build();
-	}
+    //@Bean
+    RouteLocator StaticRoutes(RouteLocatorBuilder builder) {
+        return builder.routes().route(r -> r.path("/products/**").uri("lb://PRODUCT-SERVICE/").id("route_1")).build();
+    }
 
 }

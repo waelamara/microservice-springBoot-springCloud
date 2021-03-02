@@ -14,29 +14,29 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-	@Autowired
-	private UserDetailsServiceImpl userDetailsServiceImpl;
-	@Autowired
-	public BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    private UserDetailsServiceImpl userDetailsServiceImpl;
+    @Autowired
+    public BCryptPasswordEncoder bCryptPasswordEncoder;
 
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(userDetailsServiceImpl).passwordEncoder(bCryptPasswordEncoder);
-	}
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsServiceImpl).passwordEncoder(bCryptPasswordEncoder);
+    }
 
-	@Override
-	protected void configure(HttpSecurity http) throws Exception {
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
 
-		http.csrf().disable();
-		// Eliminer les sessions
-		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-		http.authorizeRequests().antMatchers("/user/**","/login/**").permitAll();
-		//http.authorizeRequests().antMatchers("/user/**").hasAuthority("ADMIN");
+        http.csrf().disable();
+        // Eliminer les sessions
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.authorizeRequests().antMatchers("/user/**", "/login/**").permitAll();
+        //http.authorizeRequests().antMatchers("/user/**").hasAuthority("ADMIN");
 //		http.authorizeRequests().anyRequest().authenticated();
 //		http.addFilter(new JWTAuthenticationFilter(authenticationManager()));
 //		http.addFilterBefore(new JWTAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
-		
-		
-	}
+
+
+    }
 
 }

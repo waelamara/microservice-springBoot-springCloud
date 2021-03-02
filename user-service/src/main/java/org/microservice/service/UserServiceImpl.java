@@ -13,40 +13,40 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class UserServiceImpl implements IUserService {
 
-	@Autowired
-	private AppUserRepository userRepository;
-	@Autowired
-	private AppRoleRepository roleRepository;
-	@Autowired
-	private BCryptPasswordEncoder bCryptPasswordEncoder;
+    @Autowired
+    private AppUserRepository userRepository;
+    @Autowired
+    private AppRoleRepository roleRepository;
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-	@Override
-	public AppUser findUserById(Long id){
-		return userRepository.findById(id).get();
-	}
-	
-	@Override
-	public AppUser saveUser(AppUser user) {
-		user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-		return userRepository.save(user);
-	}
+    @Override
+    public AppUser findUserById(Long id) {
+        return userRepository.findById(id).get();
+    }
 
-	@Override
-	public AppRole saveRole(AppRole role) {
-		return roleRepository.save(role);
-	}
+    @Override
+    public AppUser saveUser(AppUser user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        return userRepository.save(user);
+    }
 
-	@Override
-	public AppUser findUserByEmail(String email) {
-		return userRepository.findByEmail(email);
-	}
+    @Override
+    public AppRole saveRole(AppRole role) {
+        return roleRepository.save(role);
+    }
 
-	@Override
-	public void addRoleToUser(String email, String roleName) {
-		AppUser user =userRepository.findByEmail(email);
-		AppRole role =roleRepository.findByRole(roleName);
-		user.getRoles().add(role);
-		//Puisque il est transactional on a pas besoin de faire "userRepository.save()"
-	}
+    @Override
+    public AppUser findUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    @Override
+    public void addRoleToUser(String email, String roleName) {
+        AppUser user = userRepository.findByEmail(email);
+        AppRole role = roleRepository.findByRole(roleName);
+        user.getRoles().add(role);
+        //Puisque il est transactional on a pas besoin de faire "userRepository.save()"
+    }
 
 }

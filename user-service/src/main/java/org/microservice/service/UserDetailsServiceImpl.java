@@ -16,19 +16,19 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-	 @Autowired
-	 private IUserService iUserService;
+    @Autowired
+    private IUserService iUserService;
 
-	 
-	@Override
-	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-		AppUser user=iUserService.findUserByEmail(email);
-		if(user==null) throw new UsernameNotFoundException(email);
-		Collection<GrantedAuthority> authorities=new ArrayList<>();
-		user.getRoles().forEach(r->{
-			authorities.add(new SimpleGrantedAuthority(r.getRole()));
-		});
-		return new User(user.getEmail(),user.getPassword(),authorities);
-	}
+
+    @Override
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        AppUser user = iUserService.findUserByEmail(email);
+        if (user == null) throw new UsernameNotFoundException(email);
+        Collection<GrantedAuthority> authorities = new ArrayList<>();
+        user.getRoles().forEach(r -> {
+            authorities.add(new SimpleGrantedAuthority(r.getRole()));
+        });
+        return new User(user.getEmail(), user.getPassword(), authorities);
+    }
 
 }

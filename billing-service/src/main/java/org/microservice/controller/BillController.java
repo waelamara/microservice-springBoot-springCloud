@@ -15,21 +15,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class BillController {
 
-	@Autowired
-	IBillService iBillService;
+    @Autowired
+    IBillService iBillService;
 
-	@GetMapping("/bills")
-	public Collection<Bill> findAll() {
-		return iBillService.findAll();
-	}
+    @GetMapping("/bills")
+    public Collection<Bill> findAll() {
+        return iBillService.findAll();
+    }
 
-	@PostMapping("/addBill")
-	public Bill AddBill(@RequestBody Bill bill) {
-		return iBillService.save(bill);
-	}
+    @PostMapping("/addBill")
+    public Bill AddBill(@RequestBody Bill bill) {
+        return iBillService.save(bill);
+    }
 
-	@DeleteMapping("/deleteBill/{id}")
-	public void deleteBill(@PathVariable(name = "id") Long id) {
-		iBillService.removeByid(id);
-	}
+    @DeleteMapping("/deleteBill/{id}")
+    public void deleteBill(@PathVariable(name = "id") Long id) {
+        iBillService.removeByid(id);
+    }
 }
