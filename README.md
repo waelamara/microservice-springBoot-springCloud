@@ -1,8 +1,8 @@
-<<<<<<< HEAD
+
 # microservice-springBoot-springCloud
 
 ## 1. Project architecture
-=======
+
 ## 1. Project architecture
 Our sample microservices-based system consists of the following modules:
 - **gateway-service** - a module that uses the Spring Cloud Gateway to get routes in order to process requests to downstream services.
@@ -14,7 +14,7 @@ Our sample microservices-based system consists of the following modules:
 
 
 The following picture illustrates the architecture described above.
->>>>>>> 02240be2c4453950563837efcf323200f8a35da9
+
 
 ![](project_architecture.jpg)
 
